@@ -23,7 +23,7 @@
 ## 폴더 구조
 - 실습 내용 제출은 다음과 같은 폴더 구조를 따릅니다.
    - `이름`/`실습 코드(프로젝트 파일)`
-- 필기한 내용은 `Github Wiki`를 통해 제출합니다.
+- 필기한 내용은 [Github Wiki](https://github.com/APPS-sookmyung/2023-2-SpringCloud-Study/wiki)를 통해 제출합니다.
    - 공부 내용, 에러 해결 과정 등 자세하게 작성해주세요!
 
 <br>
