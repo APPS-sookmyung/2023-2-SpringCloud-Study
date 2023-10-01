@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/first-service")
@@ -19,5 +23,15 @@ public class FirstServiceController {
     public String message(@RequestHeader("first-request") String header) {
         log.info(header);
         return "Hello World in First Service.";
+    }
+
+    @GetMapping("/3rd-homework")
+    public String homework() {
+        ServletRequestAttributes servletRequestAttributes =
+                (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+        HttpServletRequest httpServletRequest = servletRequestAttributes.getRequest();
+
+        return httpServletRequest.getHeader("first-request");
     }
 }
