@@ -1,10 +1,12 @@
 package com.example.firstservice;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/first-service/") // URI 지정 (루트)
@@ -14,9 +16,16 @@ public class FirstServiceController {
     public String welcome() {
         return "Welcome to the First service.";
     }
+
     @GetMapping("/message")
     public String message(@RequestHeader("first-request") String header) {
         log.info(header);
         return "Hello World in First Service.";
+    }
+
+    @GetMapping("/3rd-homework")
+    public String homework() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return request.getHeader("first-request");
     }
 }
