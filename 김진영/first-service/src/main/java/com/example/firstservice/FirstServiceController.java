@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,8 +29,12 @@ public class FirstServiceController {
 
     @GetMapping("/3rd-homework")
     public String homework(HttpServletRequest request) {
-        String header= request.getHeader("first-request");
-        return header;
+        ServletRequestAttributes servletRequestAttributes =
+                (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+        HttpServletRequest httpServletRequest = servletRequestAttributes.getRequest();
+
+        return httpServletRequest.getHeader("first-request");
     }
 
 }
