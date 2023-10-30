@@ -28,4 +28,9 @@ public class FirstServiceController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return request.getHeader("first-request");
     }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Hi, there. This a message from First Service. ";
+    }
 }
