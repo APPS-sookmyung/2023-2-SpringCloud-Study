@@ -1,7 +1,6 @@
 package com.example.userservice.domain;
 
 import lombok.Data;
-import lombok.Setter;
 
 import javax.persistence.*;
 
