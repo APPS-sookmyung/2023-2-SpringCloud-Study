@@ -1,9 +1,7 @@
 package com.example.userservice.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.example.userservice.dto.UserDto;
 
-@Service
-@RequiredArgsConstructor
-public class UserService {
+public interface UserService {
+    UserDto createUser(UserDto userDto);
 }
