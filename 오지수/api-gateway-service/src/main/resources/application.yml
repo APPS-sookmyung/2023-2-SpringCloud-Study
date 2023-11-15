@@ -6,6 +6,9 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 spring:
   application:
     name: apigateway-service
@@ -21,21 +24,25 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/** # /user-service/라고 요청된 모든 요청은 user-service로 전달!
-        - id: first-service
-          uri: lb://MY-FIRST-SERVICE
+            - Path=/user-service/**
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
           predicates:
-            - Path=/first-service/**
-          filters:
-            - CustomFilter
-        - id: second-service
-          uri: lb://MY-SECOND-SERVICE
-          predicates: # ??
-            - Path=/second-service/**
-          filters:
-            - name: CustomFilter
-            - name: LoggingFilter
-              args:
-                baseMessage: Hi, there.
-                preLogger: true
-                postLogger: true
+            - Path=/catalog-service/**
+#        - id: first-service
+#          uri: lb://MY-FIRST-SERVICE
+#          predicates:
+#            - Path=/first-service/**
+#          filters:
+#            - CustomFilter
+#        - id: second-service
+#          uri: lb://MY-SECOND-SERVICE
+#          predicates: # ??
+#            - Path=/second-service/**
+#          filters:
+#            - name: CustomFilter
+#            - name: LoggingFilter
+#              args:
+#                baseMessage: Hi, there.
+#                preLogger: true
+#                postLogger: true

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: user-service
+    name: catalog-service
   h2:
     console:
       enabled: true
@@ -17,7 +17,7 @@ spring:
     password: sa
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     generate-ddl: true
 

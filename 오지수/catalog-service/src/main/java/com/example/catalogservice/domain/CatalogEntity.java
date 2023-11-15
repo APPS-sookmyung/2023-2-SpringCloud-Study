@@ -11,7 +11,7 @@ import static javax.persistence.GenerationType.*;
 
 @Data
 @Entity
-@Table(name = "Catalog")
+@Table(name = "catalog")
 public class CatalogEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
