@@ -1,17 +1,15 @@
-package com.example.userservice.domain;
+package com.example.userservice.jpa;
 
 import lombok.Data;
 
 import javax.persistence.*;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 50, unique = true)
