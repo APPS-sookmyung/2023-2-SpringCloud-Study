@@ -18,21 +18,21 @@ spring:
             preLogger: true
             postLogger: true
       routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/** # /user-service/라고 요청된 모든 요청은 user-service로 전달!
         - id: first-service
           uri: lb://MY-FIRST-SERVICE
-          predicates: # ??
+          predicates:
             - Path=/first-service/**
-          filters: # ????? ????
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-response-header2
+          filters:
             - CustomFilter
         - id: second-service
           uri: lb://MY-SECOND-SERVICE
           predicates: # ??
             - Path=/second-service/**
           filters:
-#            - AddRequestHeader=second-request, second-request-header2
-#            - AddResponseHeader=second-response, second-response-header2
             - name: CustomFilter
             - name: LoggingFilter
               args:
