@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
