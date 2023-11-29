@@ -14,7 +14,7 @@ public class UserDto {
     
     // 중간 단계 클래스로 이동될 때 사용
     private String userId;
-    private Date creatAt;
+    private Date createAt;
     
     private String encryptedPwd; // 패스워드 암호화
 
