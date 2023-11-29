@@ -30,7 +30,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
         http.authorizeRequests().antMatchers("/health_check/**").permitAll();
         http.authorizeRequests().antMatchers("/**") //모든 코드에 대해서 통과시키지 않음 (not permitAll)
-                .hasIpAddress("192.168.0.4")//내 ip 로 제한
+                .hasIpAddress("127.0.0.1")//내 ip 로 제한
                 .and()
                 .addFilter(getAuthenticationFilter()); //인증필터를 거친것만
         http.headers().frameOptions().disable();
