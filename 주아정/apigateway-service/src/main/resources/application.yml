@@ -20,11 +20,38 @@ spring:
             preLogger: true
             postLogger: true
       routes:
-          # user-service
+#          # user-service
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates: #조건식
+#            - Path=/user-service/**
+        # user-service => 로그인
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates: #조건식
+            - Path=/user-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        # user-service => 회원가입
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates: #조건식
+            - Path=/user-service/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        # user-service => 기타
         - id: user-service
           uri: lb://USER-SERVICE
           predicates: #조건식
             - Path=/user-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         # catalog-service
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
