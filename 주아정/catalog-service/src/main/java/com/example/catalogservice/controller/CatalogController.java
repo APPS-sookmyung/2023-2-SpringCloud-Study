@@ -22,6 +22,7 @@ public class CatalogController {
     CatalogService catalogService;
 
     @Autowired
+
     public CatalogController(Environment env, CatalogService catalogService) {
         this.env = env;
         this.catalogService = catalogService;
