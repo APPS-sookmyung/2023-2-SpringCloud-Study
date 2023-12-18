@@ -27,16 +27,18 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+        http.authorizeRequests().antMatchers("/health_check/**").permitAll();
         http.authorizeRequests().antMatchers("/**") //모든 코드에 대해서 통과시키지 않음 (not permitAll)
-                .hasIpAddress("192.168.0.4")//내 ip 로 제한
+                .hasIpAddress("127.0.0.1")//내 ip 로 제한
                 .and()
                 .addFilter(getAuthenticationFilter()); //인증필터를 거친것만
         http.headers().frameOptions().disable();
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception{
-        AuthenticationFilter authenticationFilter=new AuthenticationFilter();
-        authenticationFilter.setAuthenticationManager(authenticationManager());
+        AuthenticationFilter authenticationFilter= new AuthenticationFilter(authenticationManager(),userService,env);
+        //authenticationFilter.setAuthenticationManager(authenticationManager()); //위에서 했으므로 따로 authenticationManager 호출할 필요 없음
 
         return authenticationFilter;
     }
